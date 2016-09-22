@@ -1,0 +1,125 @@
+<ion-view view-title="销售单据" name="xsdj-view" ng-controller="XsdjCtrl">
+	
+	<ion-nav-bar class="bg-color white" align-title="center">
+       <ion-nav-buttons side="left">
+         <button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+       </ion-nav-buttons>
+       <ion-nav-buttons side="right" >
+      	<!--  <button class="button button-clear" ng-click="showQuery()"><img ng-src="icon/funnel.png" style="width: 22px;height: auto;margin-top: 5px;"></button>--> 
+       	 <button class="button button-clear" ng-click="showQuery()" style="color:#ffffff;font-size:14px">筛选</button>
+       </ion-nav-buttons>
+     </ion-nav-bar>
+     
+	<!--<div class="bar bar-header bg-color">
+		<div class="button-bar">
+			<div class="buttons right-buttons">
+				<button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+				<h1 class="title white">销售单据</h1>
+				<button class="button button-clear" ng-click="showQuery()"><img ng-src="icon/funnel.png" style="width: 22px;height: auto;margin-top: 5px;">
+				</button>
+			</div>
+		</div>
+	</div>-->
+	<!-- <div class="scroll-content has-header">
+		<div class="row stable-bg" id ="queryDiv" style="height:320px;padding:0px;display: none;position:absolute;top: 0;left: 0;z-index: 999999;background:#EAEAEA;">
+			<ul class="list">
+				<label class="item item-input item-select">
+					<div class="input-label">
+						开始时间
+					</div>
+					<input type="text" value=""  onclick="WdatePicker()" ng-model="data.startTime" id="startTime" style="height:25px;padding: 0px;" readonly="true">
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						结束时间
+					</div>
+					<input type="text" value=""  onclick="WdatePicker()" ng-model="data.endTime" id="endTime" style="height:25px;padding: 0px;" readonly="true">
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						收银员
+					</div>
+					<select ng-model="data.employeeId">
+						<option value="">全部</option>
+						<option ng-repeat="item in employeeList" value="{{item.id}}">{{item.workName}}</option>
+					</select> </label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						销售类型
+					</div>
+					<select ng-model="data.sellType">
+						<option value="-1">全部</option>
+						<option  value="0">正常销售</option>
+						<option value="1">外卖</option>
+						<option value="2">退货</option>
+					</select> </label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						状态
+					</div>
+					<select ng-model="data.status">
+						<option value="-1">全部</option>
+						<option  value="0">挂单</option>
+						<option value="1">完成</option>
+						<option value="2">已作反结账</option>
+						<option value="3">取消</option>
+						<br />
+					</select> </label>
+				</ul>
+
+				<div class="row no-padding">
+					<div class="col col-50">
+						<button class="button button-block button-calm" ng-click="hideQuery();">
+							取消
+						</button>
+					</div>
+					<div class="col col-50">
+						<button class="button button-block button-calm" ng-click="query();">
+							确定
+						</button>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<ion-content class="has-header stable-bg" delegate-handle="xsMainScroll">
+			
+				<ul class="list card" style="padding: 5px 10px;" ng-repeat="item in sellList" ng-click="openSellInfoModal(item);">
+					<!--item-icon-right
+		            <p>
+		                                      收银员：{{item.sellerEmployee.workName}}
+		            </p>
+					<p>
+						销售类型：{{item.sellTypeName}}
+					</p>
+		            <p>
+		            	状态：{{item.statusName}}
+		            </p>
+					<p>
+						流水号：{{item.id}}
+					</p>
+					<i class="icon ion-ios-arrow-right"></i>
+					-->
+					<li class="item assertive" style="padding: 5px;border:none;font-size:15px;">日期：{{item.sellTime|orderBy:'sellTime':false|date:'yyyy-MM-dd HH:mm:ss'}}</li>
+					<li class="item row" style="padding: 5px;border:none;font-size:15px;">
+						<div class="col-80">
+							收银员: {{item.sellerEmployee.workName}}
+						</div>
+						<div class="col-20 text-right">
+							<span style="border:1px solid #007fdb;color:#007fdb;border-radius:3px;padding:0 5px;">明细</span>
+						</div>
+					</li>
+					<li class="item" style="padding: 5px;border:none;font-size:15px;">类型: {{item.sellTypeName}}</li>
+					<li class="item" style="padding: 5px;border:none;font-size:15px;">状态: {{item.statusName}}</li>
+				</ul>
+		
+			<div class="row" ng-show="sellList.length<1">
+				<div class="col col-100">					
+					<center class="assertive">
+						暂无数据
+					</center>
+				</div>
+			</div>
+			<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+		</ion-content>
+
+</ion-view>

@@ -1,0 +1,30 @@
+<ion-view view-title="Login" name="login-view" ng-controller="LoginCtrl">
+	<ion-content class="aibao-bg">
+		<div class="row" id="a">
+			<div class="col">
+				<center><img src="img/logo.png"/>
+				</center>
+				<div class="login" id="b">
+					<div id="emplogin">
+						<div class="list list-inset">
+							<form name="loginForm" >
+								<label class="item item-input"><span> 账号：</span>
+									<input type="text" value="{{data.username}}" required placeholder="请输入商家帐号" ng-model="data.username" >
+								</label>
+								<label class="item item-input"><span> 密码：</span>
+									<input type="password" value="{{data.password}}" required placeholder="请输入密码" ng-model="data.password">
+								</label>
+								<!--<label class="item item-checkbox"> <label class="checkbox">
+								<input type="checkbox" ng-model="data.isRemember" checked>
+								</label>记住密码 </label>-->
+						</div>
+						<button style="width:94%;margin:0 auto" ng-disabled="loginForm.$invalid" class="button button-full button-calm" ng-click="login()">
+							登录
+						</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

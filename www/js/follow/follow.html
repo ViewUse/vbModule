@@ -1,0 +1,15 @@
+<ion-view view-title="关注的分店">
+	<ion-nav-bar class="bg-color white" align-title="center">
+		<ion-nav-buttons side="left">
+         <button class="button button-icon button-clear ion-navicon" style="color: #FFFFFF" menu-toggle="left"></button>
+       </ion-nav-buttons>
+		<ion-nav-buttons side="right">
+			<button class="button icon button-icon ion-loop ionic-left light-bg button-clear" ng-click="syncShops()">同步</button>
+		</ion-nav-buttons>
+	</ion-nav-bar>
+	<ion-content>
+		<div class='card'>
+			<ion-checkbox class="item" ng-repeat="item in subShopps" ng-model="item.isChecked" ng-change="subShopChange()">{{item.name}}</ion-checkbox>
+		</div>
+	</ion-content>
+</ion-view>

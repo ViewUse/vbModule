@@ -1,0 +1,62 @@
+<div id="dateDiv">
+  <div class="row" id ="queryDiv" style="background:#EAEAEA;">
+    <ul class="list">
+      <label class="item item-input-inset">
+        <div class="input-label">
+          开始时间
+        </div>
+        <input type="text" value="data.startTime" class="Wdate" ng-model="data.startTime" ng-click="showDatePicker(0,$event)" id="startTime" style="height:25px;width:125px;padding:0px;" readonly="true">
+      </label>
+      <label class="item item-input-inset">
+        <div class="input-label">
+          结束时间
+        </div>
+        <input type="text" class="Wdate" value="data.endTime" ng-click="showDatePicker(1,$event)" ng-model="data.endTime" id="endTime" style="height:25px;width:125px;padding: 0px;" readonly="true">
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          收银员
+        </div>
+        <select ng-model="data.employeeId"  ng-init='data.employeeId = undefined'>
+          <option value="" selected>全部</option>
+          <option ng-repeat="item in employeeList" value="{{item.id}}" ng-selected='$parent.data.employeeId === $index'>{{item.workName}}</option>
+        </select>
+      </label>
+      <!--<label class="item item-input item-select">-->
+        <!--<div class="input-label">-->
+          <!--商品分类-->
+        <!--</div>-->
+        <!--<select ng-model="data.commodityTypeId"  ng-init='data.commodityTypeId = undefined'>-->
+          <!--&lt;!&ndash;<option>全部</option>&ndash;&gt;-->
+          <!--<option ng-repeat="item in commodityTypeList" value="{{item[0]}}"  ng-selected='$parent.data.commodityTypeId === $index'>{{item[1]}}</option>-->
+        <!--</select>-->
+      <!--</label>-->
+      <!--<label class="item item-input item-select">-->
+        <!--<div class="input-label">-->
+          <!--供应商-->
+        <!--</div>-->
+        <!--<select ng-model="data.supplierId"  ng-init='data.supplierId = undefined'>-->
+          <!--&lt;!&ndash;<option>全部</option>&ndash;&gt;-->
+          <!--<option ng-repeat="item in supplierInfoList" value="{{item.id}}"  ng-selected='$parent.data.supplierId === $index'  >{{item.name}}</option>-->
+        <!--</select>-->
+      <!--</label>-->
+    </ul>
+  </div>
+
+  <div class="row no-padding">
+    <div class="col col-50">
+      <button class="button button-block button-calm" ng-click="hideQuery();">
+        取消
+      </button>
+    </div>
+    <div class="col col-50">
+      <button class="button button-block button-calm" ng-click="query();">
+        确定
+      </button>
+    </div>
+  </div>
+
+  <div id="dateQueryDiv" ng-hide="!data.isShowPicker" style="position:absolute;left:0px;z-index:999;"></div>
+
+</div>
+

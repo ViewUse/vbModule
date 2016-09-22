@@ -1,0 +1,99 @@
+<div class="row light-bg main-boder-bottom" style="height: 50px;">
+<a id="lfbt" class="icon ion-ios-arrow-left col-10 jz-center" style="color:#999999;font-size:22px" ng-click="preDay();showDetail(1);"></a>
+
+<div class="col col-80 jz-center" style="font-size: 16px;color: #333333;">
+	<img ng-src="icon/rl.svg" class="img22 jz-center">
+	&nbsp;资金明细&nbsp;
+	<input style="width:90px" type="text" value="{{startTime}}"  onclick="WdatePicker({onpicked:function(){queryRjbb()},maxDate:'%y-%M-%d'})" ng-model="startTime" id="startTime" >
+
+	</span>
+</div>
+<a id="rgbt" class="icon ion-ios-arrow-right col-10 jz-center" style="color:#999999;font-size:20px" ng-click="nextDay();showDetail(1);"></a>
+</div>
+<div class="light-bg">
+	<div class="row main-boder-bottom padding-10 jz-center" style="height:76px">
+	<div class="col col-50 main-boder-right">
+		<p class="p-blue margin-b"> {{totalInfo[1]| number:2}}</p>
+		<span class="jz-center">
+			<img ng-src="icon/xianjin.svg" class="img22 jz-center">
+			<span class="rj-text"> 现金支付 </span>
+		</span>
+	</div>
+	<div class="col col-50">
+		<p class="p-blue margin-b"> {{totalInfo[5]| number:2}} </p>
+		<span class="jz-center">
+			<img ng-src="icon/chuxu.svg" class="img22 jz-center">
+			<span class="rj-text"> 储值卡支付</span>
+		</span>
+	</div>
+</div>
+
+<div class="row main-boder-bottom  padding-10 jz-center"  style="margin-top: 0px;height:76px;">
+		<div class="col col-33 main-boder-right">
+			<p class="p-blue margin-b"> {{totalInfo[3]| number:2}}</p>
+			<span class="jz-center">
+				<img ng-src="icon/zhifubao.svg" class="img22 jz-center">
+				<span class="rj-text"> 支付宝支付 </span>
+			</span>
+		</div>
+		<div class="col col-33 main-boder-right">
+			<p class="p-blue margin-b"> {{totalInfo[2]| number:2}} </p>
+			<span class="jz-center">
+				<img ng-src="icon/yinlian.svg" class="img22 jz-center">
+				<span class="rj-text"> 银联卡支付 </span>
+			</apan>
+		</div>
+		<div class="col col-33 ">
+			<p class="p-blue margin-b"> {{totalInfo[4]| number:2}} </p>
+			<span class="jz-center">
+				<img ng-src="icon/weixin.svg" class="img22 jz-center">
+				<span class="rj-text"> 微信支付 </span>
+			</span>
+		</div>
+	</div>
+</div>
+<p style="border:5px solid #f2f2f2;margin:0px"></p>
+<div class="row light-bg main-boder-bottom">
+	<button class="col-30 button-clear" style="color:#007fdb" id="xssp" ng-click="showDetail(1)">销售商品<span class="detail1"></span></button>
+<button class="col-20 button-clear" style="color:#b2b2b2" id="fjz" ng-click="showDetail(2)">反结账<span class="detail2"></span></button>
+<button class="col button-clear" style="color:#b2b2b2" id="th" ng-click="showDetail(3)">退货<span class="detail3"></span></button>
+<button class="col-33 button-clear" style="color:#b2b2b2" id="hyk" ng-click="showDetail(4)">会员卡充值<span class="detail4"></span></button>
+</div>
+ <ul class="list light-bg line-pd " ng-show="detail1">
+	<li class="row line-b0"><span class="col-75">销售额：</span> 	<span class="col-25 text-center red-sp">{{sellInfo[0]| number:2}}</span></li>
+	<li class="row line-b0"><span class="col-75">利润：</span> 	<span class="col-25 text-center red-sp">{{sellInfo[1]| number:2}}</span></li>
+	<li class="row line-b0"><span class="col-75">单数：</span> 	<span class="col-25 text-center red-sp" ng-bind="sellInfo[2]"></span></li>
+	<li class="row line-b0"><span class="col-75">现金支付：</span> 	<span class="col-25 text-center red-sp">{{cashAmount| number:2}}</span></li>
+	<li class="row line-b0"><span class="col-75 ">微信支付:</span>  <span class="col-25 text-center red-sp">{{wxPayAmount| number:2}}</span></li>
+	<li class="row line-b0"><span class="col-75">支付宝支付：</span> <span class="col-25 text-center red-sp">{{alipayAmount| number:2}}</span></li>
+	<li class="row line-b0"><span class="col-75">银联卡支付：</span> <span class="col-25 text-center red-sp">{{unionpayAmount| number:2}}</span></li>
+	<li class="row line-b0"><span class="col-75">储值卡支付：</span> <span class="col-25 text-center red-sp">{{preCashAmount| number:2}}</span></li>
+</ul>
+<ul class="list light-bg line-pd" ng-show="detail2">
+	<li class="row line-b"><span class="col-75 ">退货额:</span> 	<span class="col-25 text-center red-sp">{{sellInfoReverse[0]>0?"-":""}}{{sellInfoReverse[0] | number:2}}</span></li>
+	<li class="row line-b"><span class="col-75 ">单数:</span> 	<span class="col-25 text-center red-sp"  ng-bind="sellInfoReverse[2]"></span></li>
+	<li class="row line-b"><span class="col-75 ">现金支付:</span>  <span class="col-25 text-center red-sp">{{cashAmount| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75 ">微信支付:</span>  <span class="col-25 text-center red-sp">{{wxPayAmount| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75 ">支付宝支付:</span> <span class="col-25 text-center red-sp">{{alipayAmount| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75 ">银联卡支付:</span> <span class="col-25 text-center red-sp">{{unionpayAmount| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75 ">储值卡支付:</span> <span class="col-25 text-center red-sp">{{preCashAmount| number:2}}</span></li>
+</ul>
+<ul class="list light-bg line-pd" ng-show="detail3">
+	<li class="row line-b"><span class="col-75 ">退货额:</span> 	 <span class="col-25 text-center red-sp">{{sellInfoReturnGoods[0] | number:2}}</span></li>
+	<li class="row line-b"><span class="col-75 ">单数:</span> 	 <span class="col-25 text-center red-sp">{{sellInfoReturnGoods[2]}}</span></li>
+	<li class="row line-b"><span class="col-75 ">现金支付:</span> 	 <span class="col-25 text-center red-sp">{{cashAmount| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75 ">微信支付:</span> 	 <span class="col-25 text-center red-sp">{{wxPayAmount| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75 ">支付宝支付:</span> <span class="col-25 text-center red-sp">{{alipayAmount| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75 ">银联卡支付:</span> <span class="col-25 text-center red-sp">{{unionpayAmount| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75 ">储值卡支付:</span> <span class="col-25 text-center red-sp">{{preCashAmount| number:2}}</span></li>
+</ul>
+<ul class="list light-bg line-pd" ng-show="detail4">
+	<li class="row line-b"><span class="col-75">充值:</span>    <span class="col-25 text-center red-sp">{{sellInfoRechargeReport[1]| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75">赠送:</span>    <span class="col-25 text-center red-sp">{{sellInfoRechargeReport[2]| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75">单数:</span> 	   <span class="col-25 text-center red-sp"   ng-bind="sellInfoRechargeReport[0]"></span></li>
+	<li class="row line-b"><span class="col-75">现金支付:</span>  <span class="col-25 text-center red-sp">{{cashAmount| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75">微信支付:</span>  <span class="col-25 text-center red-sp">{{wxPayAmount| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75">支付宝支付:</span> <span class="col-25 text-center red-sp">{{alipayAmount| number:2}}</span></li>
+	<li class="row line-b"><span class="col-75">银联卡支付:</span> <span class="col-25 text-center red-sp">{{unionpayAmount| number:2}}</span></li>
+	<!-- <li class="row line-b"><span class="col-75">储值卡支付:</span> <span class="col-25 text-center red-sp">{{preCashAmount| number:2}}</span></li>-->
+</ul>

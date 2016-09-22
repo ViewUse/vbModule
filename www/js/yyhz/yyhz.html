@@ -1,0 +1,18 @@
+<ion-view view-title="营业汇总" name="yyhz-view" ng-controller="YyhzCtrl">
+	<ion-nav-bar class="bg-color light" align-title="center">
+       <ion-nav-buttons side="left">
+         <button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+       </ion-nav-buttons>
+     </ion-nav-bar>
+
+	<ion-content class="has-header no-padding" scroll="false"> 
+   <!--  <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>-->
+    	<div class="row no-padding">
+    		<div class="col col-25" ng-if="isHasSubShop" ng-include="'templates/subshop.html'"></div>
+    		<div ng-class="isHasSubShop?'col col-75':'col col-100'" ng-include="'templates/yyhz-i.html'"></div> 
+		 </div>
+  </ion-content>
+</ion-view>

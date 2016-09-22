@@ -1,0 +1,174 @@
+<ion-view view-title="占比统计" name="zbtj-view" ng-controller="ZbtjCtrl">
+	<ion-nav-bar class="bg-color white" align-title="center">
+       <ion-nav-buttons side="left">
+         <button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+       </ion-nav-buttons>
+       <ion-nav-buttons side="right" >
+      	 <button class="button button-clear" ng-click="showQuery()"><img ng-src="icon/funnel.png" style="width: 22px;height: auto;margin-top: 5px;"></button>
+       </ion-nav-buttons>
+     </ion-nav-bar>
+	<!-- <div class="bar bar-header blue-bg">
+		<div class="button-bar">
+			<div class="buttons right-buttons">
+				<button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+				<h1 class="title white">占比统计</h1>
+				<button class="button button-clear" ng-click="showQuery()"><img ng-src="icon/funnel.png" style="width: 22px;height: auto;margin-top: 5px;"></button>	
+			</div>
+		</div>
+	</div> -->
+	
+	<div class="scroll-content has-header">
+		<div class="row stable-bg" id ="queryDiv" style="height:320px;padding:0px;display: none;position:absolute;top: 0;left: 0;z-index: 999999;background:#EAEAEA;">
+			<div class="list">
+				<div class="item item-divider">
+					<b>图表类型</b>
+				</div>
+
+				<div class="row no-padding">
+					<div class="col col-50">
+						<label class="item item-checkbox"> <label class="checkbox">
+								<input type="checkbox" ng-model="data.barChart" ng-click="selectChartType(0)">
+							</label>柱形图 </label>
+					</div>
+					<div class="col col-50">
+						<label class="item item-checkbox"> <label class="checkbox">
+								<input type="checkbox" ng-model="data.lineChart" ng-click="selectChartType(1)">
+							</label>饼图 </label>
+					</div>
+				</div>
+				<div class="item item-divider">
+					<b>统计方式</b>
+				</div>
+				<div class="row no-padding">
+					<div class="col col-33">
+						<label class="item item-checkbox"> <label class="checkbox">
+								<input type="checkbox" ng-model="data.category" ng-click="selectedGroupBy('category')">
+							</label>商品分类 </label>
+					</div>
+					<div class="col col-33">
+						<label class="item item-checkbox"> <label class="checkbox">
+								<input type="checkbox" ng-model="data.guider" ng-click="selectedGroupBy('guider')">
+							</label>导购员 </label>
+					</div>
+					<div class="col col-33">
+						<label class="item item-checkbox"> <label class="checkbox">
+								<input type="checkbox" ng-model="data.cashier" ng-click="selectedGroupBy('cashier')">
+							</label>收银方式 </label>
+					</div>
+				</div>
+				<div class="row no-padding">
+					<div class="col col-33">
+						<label class="item item-checkbox"> <label class="checkbox">
+								<input type="checkbox" ng-model="data.payMethod" ng-click="selectedGroupBy('payMethod')">
+							</label>支付方式</label>
+					</div>
+					<div class="col col-33">
+						<label class="item item-checkbox"> <label class="checkbox">
+								<input type="checkbox" ng-model="data.customer" ng-click="selectedGroupBy('customer')">
+							</label>是否会员 </label>
+					</div>
+				</div>
+				<div class="item item-divider">
+					<b>显示数据</b>
+				</div>
+				<div class="row no-padding">
+					<div class="col col-33">
+						<label class="item item-checkbox"> <label class="checkbox">
+								<input type="checkbox" ng-model="data.sellAmountFlag" ng-click="selectAmount(1)">
+							</label>销售总额 </label>
+					</div>
+					<div class="col col-33">
+						<label class="item item-checkbox"> <label class="checkbox">
+								<input type="checkbox" ng-model="data.gainAmountFlag" ng-click="selectAmount(2)">
+							</label>利润 </label>
+					</div>
+					<div class="col col-33">
+						<label class="item item-checkbox"> <label class="checkbox">
+								<input type="checkbox" ng-model="data.sellNumFlag" ng-click="selectAmount(3)">
+							</label>数量 </label>
+					</div>
+				</div>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						开始时间
+					</div>
+					<input type="text" value=""  onclick="WdatePicker()" ng-model="data.startTime" id="startTime" style="height:25px;padding: 0px;" readonly="true">
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						结束时间
+					</div>
+					<input type="text" value=""  onclick="WdatePicker()" ng-model="data.endTime" id="endTime" style="height:25px;padding: 0px;" readonly="true">
+				</label>
+			</div>
+			<div class="row no-padding">
+				<div class="col col-50">
+					<button class="button button-block button-calm" ng-click="hideQuery();">
+						取消
+					</button>
+				</div>
+				<div class="col col-50">
+					<button class="button button-block button-calm" ng-click="query();">
+						确定
+					</button>
+				</div>
+			</div>
+		</div>
+		<ion-content>
+			<div class="row" style="height:auto;padding: 0px;">
+				<img src="{{imgsrc}}" style="width: 100%;height: 300px;" />
+			</div>
+
+			<div class="row light-bg" style="height:90px;padding: 0px;">
+				<div class="col col-50">
+					<h5>商品总价:</h5>
+					<h5>{{totalTrendAnalysis.totalAmount}}</h5>
+				</div>
+				<div class="col col-50">
+					<h5>利润:</h5>
+					<h5>{{totalTrendAnalysis.gainAmount}}</h5>
+				</div>
+			</div>
+
+			<div class="row light-bg" style="height:90px;padding: 0px;">
+				<div class="col col-33">
+					<h5>商品数量:</h5>
+					<h5>{{totalTrendAnalysis.sellNum}}</h5>
+				</div>
+				<div class="col col-33">
+					<h5>销售单数:</h5>
+					<h5>{{totalTrendAnalysis.countSell}}</h5>
+				</div>
+				<div class="col col-33">
+					<h5>实收金额:</h5>
+					<h5>{{totalTrendAnalysis.sellAmount| number:2}}</h5>
+				</div>
+			</div>
+
+			<div class="list list-inset">
+				<div class="row light-bg" ng-repeat="item in trendAnalysisList" style="height:90px;padding: 0px;">
+					<div class="col col-25">
+						<h5>&nbsp;</h5>
+						<h5>销售单数:</h5>
+						<h5>商品数量:</h5>
+					</div>
+					<div class="col col-25">
+						<h5>{{item.name}}</h5>
+						<h5>{{item.countSell}}</h5>
+						<h5>{{item.sellNum}}</h5>
+					</div>
+					<div class="col col-25">
+						<h5>商品总价:</h5>
+						<h5>实收金额:</h5>
+						<h5>利润:</h5>
+					</div>
+					<div class="col col-25">
+						<h5>{{item.totalAmount| number:2}}</h5>
+						<h5>{{item.sellAmount| number:2}}</h5>
+						<h5>{{item.gainAmount| number:2}}</h5>
+					</div>
+				</div>
+			</div>
+		</ion-content>
+	</div>
+</ion-view>

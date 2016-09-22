@@ -1,0 +1,116 @@
+<ion-modal-view>
+	<div class="bar bar-header bg-color">
+		<div class="buttons">
+			<button class="button icon ion-ios-arrow-left button-clear"
+				style="color: #FFFFFF" ng-click="closeSellInfoModal()"></button>
+			<h1 class="title white">销售明细</h1>
+		</div>
+	</div>
+	<ion-content class="has-header stable-bg">
+		<div class="card white"
+			style="border-radius: 5px; background-color: #007fdb;">
+			<div class="row">
+				<span class="col">收银员: {{item.sellerEmployee.workName}}</span>
+			</div>
+			<div class="row">
+				<span class="col col-50">销售类型: {{item.sellTypeName}}</span><span
+					class="col col-50 text-right">{{item.sellTime|
+					date:'yyyy-MM-dd'}}</span>
+			</div>
+			<div class="row">
+				<span class="col">状态: {{item.statusName}}</span>
+			</div>
+		</div>
+		<div class="card" style="border-radius: 5px;">
+			<h6 style="text-align: center; font-size: 18px;">单据</h6>
+			<div style="border-bottom: 1px solid #999999;"></div>
+			<!--<div class="row col padding">
+							<h5>日&nbsp;&nbsp;&nbsp;&nbsp;期：<span class="text-right">{{item.sellTime| date:'yyyy-MM-dd'}}</span></h5>
+							<h5>收银员：{{item.sellerEmployee.workName}}</h5>
+							<h5>类&nbsp;&nbsp;&nbsp;&nbsp;型：{{item.sellTypeName}}</h5>
+							<h5>状&nbsp;&nbsp;&nbsp;&nbsp;态：{{item.statusName}}</h5>
+							<h5>总&nbsp;&nbsp;&nbsp;&nbsp;额：{{item.totalAmount}}</h5>
+							<h5>实&nbsp;&nbsp;&nbsp;&nbsp;收：{{item.sellAmount}}</h5>
+							<h5>数&nbsp;&nbsp;&nbsp;&nbsp;量：{{item.commodityNum}}</h5>
+							<h5>折&nbsp;&nbsp;&nbsp;&nbsp;扣：{{item.discount}}</h5>
+							<h5>茶位费：{{item.teaAmount}}</h5>
+							<h5>成&nbsp;&nbsp;&nbsp;&nbsp;本：{{item.costAmount}}</h5>
+							<h5>利&nbsp;&nbsp;&nbsp;&nbsp;润：{{item.gainAmount}}</h5>
+							<h5>流水号：{{item.id}}</h5>
+						</div>-->
+			<div style="padding: 0 5px; font-size: 15px; color: #8b8b8b">
+				<div class="row">
+					<span class="col col-25">流水号：</span>
+					<span class="col col-75 text-right">{{item.id}}</span>
+				</div>
+				<div class="row">
+					<span class="col col-33">总&nbsp;&nbsp;&nbsp;&nbsp;额：</span>
+					<span class="col col-67 text-right">{{item.totalAmount|number:2}}</span>
+				</div>
+				<div class="row">
+					<span class="col col-33">实&nbsp;&nbsp;&nbsp;&nbsp;收：</span>
+					<span class="col col-67 text-right">{{item.sellAmount|number:2}}</span>
+				</div>
+				<div class="row">
+					<span class="col col-33">折&nbsp;&nbsp;&nbsp;&nbsp;扣：</span>
+					<span class="col col-67 text-right">{{item.discount}}%</span>
+				</div>
+				<div class="row">
+					<span class="col col-33">茶位费：</span>
+					<span class="col col-67 text-right">{{item.teaAmount}}</span>
+				</div>
+				<div class="row">
+					<span class="col col-33">成&nbsp;&nbsp;&nbsp;&nbsp;本：</span>
+					<span class="col col-67 text-right">{{item.costAmount|number:2}}</span>
+				</div>
+				<div class="row">
+					<span class="col col-33">利&nbsp;&nbsp;&nbsp;&nbsp;润：</span>
+					<span class="col col-67 text-right">{{item.gainAmount|number:2}}</span>
+				</div>
+				<div class="row">
+					<span class="col col-33">日&nbsp;&nbsp;&nbsp;&nbsp;期：</span>
+					<span class="col col-67 text-right">{{item.sellTime|date:'yyyy-MM-dd'}}</span>
+				</div>
+				<!--<div class="row">
+							<span class="col col-33">收银员：</span><span class="col col-67 text-right">{{item.sellerEmployee.workName}}</span>
+							</div>
+							<div class="row">
+							<span class="col col-33">类&nbsp;&nbsp;&nbsp;&nbsp;型：</span><span class="col col-67 text-right">{{item.sellTypeName}}</span>
+							</div>
+							<div class="row">
+							<span class="col col-33">状&nbsp;&nbsp;&nbsp;&nbsp;态：</span><span class="col col-67 text-right">{{item.statusName}}</span>
+							</div>-->
+				<div class="row">
+					<span class="col col-33">数&nbsp;&nbsp;&nbsp;&nbsp;量：</span>
+					<span class="col col-67 text-right">{{item.commodityNum}}</span>
+				</div>
+			</div>
+			<div style="border-top: 1px solid #999999;"></div>
+			<div class="row row-no-padding" ng-click="showDJDetail()">
+				<div class="col col-90 col-center" style="text-align: left; font-size: 18px; padding-left: 5px;">单据明细</div>
+				<button class="button icon ion-ios-arrow-right button-clear col col-10 col-center"
+					style="padding-right: 20px" ng-show="true"></button>
+			</div>
+			<div style="border-top: 1px solid #999999;"></div>
+			<ion-list ng-show="data.isShowDJDetail" style="color:#8b8b8b;font-size:12px;text-align: center;"> 
+				<ion-item class="item no-padding" style="font-size:14px;">
+					<ul class="row">
+						<li class="col-25">商品名称</li>
+						<li class="col-25">数量</li>
+						<li class="col-25">应收金额</li>
+						<li class="col-25">备注</li>
+					</ul>
+				</ion-item> 
+				<ion-item class="item no-padding" ng-repeat="item in sellDetailList"
+					style="font-size:12px;">
+					<ul class="row">
+						<li class="col-25">{{item.commodityName}}</li>
+						<li class="col-25">{{item.sellNum}}</li>
+						<li class="col-25">{{item.sellAmount|number:2}}</li>
+						<li class="col-25">{{item.remark}}</li>
+					</ul>
+				</ion-item> 
+			</ion-list>
+		</div>
+	</ion-content> 
+</ion-modal-view>

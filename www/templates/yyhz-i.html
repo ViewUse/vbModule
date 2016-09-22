@@ -1,0 +1,75 @@
+<div class="row main-boder-bottom border-center" style="height: 60px;margin-top:0px;padding-top:10px">
+	<div class="col col-33 border-left " style="background-color:#007fdb;color:#ffffff;" ng-click="showyyls2();" id="today">今日</div>
+	<div class="col col-33 border-right" style="background-color:#dddddd;color:#007fdb;border:1px solid #007fdb;" ng-click="showyyls()" id="thisMonth">本月</div>
+</div>
+
+	<div class="row main-boder-bottom no-padding" style="height: 50px;margin-top:0px;">
+		<!--<a class="col col-10 button button-icon icon ion-ios-arrow-left col-center" style="font-size:16px;color: #007fdb" ng-click="preDay()"></a>-->
+		<a id="yy-left" class="col col-10 icon ion-ios-arrow-left col-center" style="color:#999999;font-size:22px;padding-left:10px" ng-click="preDay()"></a>
+		<div class="col-80 jz-center" style="font-size: 16px;color: #333333;">
+			<img ng-src="icon/rl.svg" class="img26 jz-center">
+			&nbsp;<span ng-bind="sy"></span>&nbsp;
+			<input style="width:90px" type="text" ng-model="currentTime" id ="currentTime" >
+		</div>
+		<!--<a class="col col-10 button button-icon icon ion-ios-arrow-right col-center" style="font-size:16px;color: #007fdb" ng-click="nextDay()"></a>-->
+		<a id="yy-right" class="col col-10 icon ion-ios-arrow-right col-center text-right" style="color:#999999;font-size:22px;padding-right:10px" ng-click="nextDay()"></a>
+	</div>
+
+	<div class="row no-padding" style="margin-top:0px;">
+	  	<div  class="col no-padding " >
+		    <div class="row main-boder-bottom text-color" style="text-align:center;height:82px;">
+		    	<div class="col col-33  main-boder-right col-center" >
+		    		<p class="p-green margin-b" ng-bind="total|number:2"></p>
+		    		<span>销售总额</span>
+		    	</div>
+		    	<div class="col col-33  main-boder-right col-center" >
+		    		<p id="maoli" class="p-blue margin-b" ng-bind="maoli|number:2"></p>
+		    		<span>销售毛利</span>
+		    	</div>
+		    	<div class="col col-33 col-center">
+		    		<p id="bishuo" class="p-red margin-b" ng-bind="sellNum"></p>
+		    		<span>销售笔数</span>
+		    	</div>
+		    </div>
+	
+		    <div class="row main-boder-bottom text-color" style="text-align:center;margin-top:0px;height:82px;">
+		    	<div class="col col-33  main-boder-right col-center" >
+		    		<p class="p-green margin-b" ng-bind="counterSeting|number:2"></p>
+		    		<span>反结账(元)</span>
+		    	</div>
+		    	<div class="col col-33  main-boder-right col-center">
+		    		<p class="p-blue margin-b" ng-bind="discountAmount|number:2"></p>
+		    		<span>折扣(元)</span>
+		    	</div>
+		    	<div class="col col-33 col-center">
+		    		<p class="p-red margin-b" ng-bind="cancelAmount|number:2"></p>
+		    		<span>退款(元)</span>
+		    	</div>
+		    </div>
+	  	</div>
+	</div>
+	<div id="yyls">
+		<div class="t1-color jz-center">当日营业流水</div>
+		<ul class="list">
+			<li class="row item text-color">
+				<div class="col col-25">时间</div>
+				<div class="col col-25 text-center">桌号</div>
+				<div class="col col-25 text-center">类型</div>
+				<div class="col col-25 text-center">金额(元)</div>
+			</li>
+			<ion-scroll calc-height delegate-handle="infoMainScroll">
+	
+			<li class="item row" style="margin-top: 0px; padding: 5px"
+				ng-repeat="item in sellInfos">
+				<div class="col col-25" style="font-size: 12px">
+					{{item.sellTime| date:'HH:mm:ss'}}</div>
+				<div class="col col-25 text-center" style="font-size: 12px"
+					ng-bind="item.placeName"></div>
+				<div class="col col-25 text-center" style="font-size: 12px"
+					ng-bind="item.statusName"></div>
+				<div class="col col-25 text-center" style="font-size: 12px"
+					ng-bind="item.sellAmount|number:2"></div>
+			</li>
+			</ion-scroll>
+		</ul>
+	</div>

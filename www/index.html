@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width,height=device-height">
+    <title></title>
+		<title></title>
+
+		<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+		<link href="css/ionic.app.css" rel="stylesheet">
+		-->
+		<script language="JavaScript" type="text/javascript" src="lib/jquery.js"></script>
+		<!-- ionic/angularjs js -->
+		<script src="lib/ionic/js/ionic.bundle.js"></script>
+		<script language="JavaScript" type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script>
+
+		<!-- cordova script (this will be a 404 during development) -->
+		<script src="lib/ngCordova/dist/ng-cordova.js"></script>
+		<script src="cordova.js"></script>
+
+		<!-- your app's js -->
+		<script type="text/javascript" charset="utf-8" src="js/common/md5.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/common/UpgradeSql.js"></script>
+		<script src="js/common/sqlitedb.js"></script>
+		<script src="js/common/dbhelper.js"></script>
+		<script src="js/common/utils.js"></script>
+		<script src="js/dao/SellerDao.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/services.js"></script>
+		<script src="js/directives.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/login/login.js"></script>
+		<script src="js/main/main.js"></script>
+		<script src="js/rjbb/rjbb.js"></script>
+		<script src="js/xsdj/xsdj.js"></script>
+		<script src="js/spxs/spxs.js"></script>
+		<script src="js/fjzdj/fjzdj.js"></script>
+    <script src="js/fjzdjDetail/fjzdjDetail.js"></script>
+		<script src="js/qsfx/qsfx.js"></script>
+		<script src="js/zbtj/zbtj.js"></script>
+		<script src="js/yyhz/yyhz.js"></script>
+		<script src="js/handover/handover.js"></script>
+    	<script src="js/handoverDetail/handoverDetail.js"></script>
+    	<script src="js/spxsDetail/spxsDetail.js"></script>
+    	<script src="js/follow/followCtrl.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/echarts.min.js"></script>
+	</head>
+
+	<body ng-app="starter">
+		<ion-nav-view></ion-nav-view>
+
+		<script id="sellInfo.html" type="text/ng-template">
+			<ion-modal-view>
+			<div class="bar bar-header bg-color">
+			<div class="buttons">
+			<button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="closeSellInfoModal()">
+			</button>
+			<h1 class="title white">销售明细</h1>
+			</div>
+			</div>
+
+			<ion-content class="has-header stable-bg" >
+			<div class="card white" style="border-radius:5px;background-color:#007fdb;">
+				<div class="row"><span class="col">收银员: {{item.sellerEmployee.workName}}</span></div>
+				<div class="row"><span class="col col-50" >销售类型: {{item.sellTypeName}}</span><span class="col col-50 text-right">{{item.sellTime| date:'yyyy-MM-dd'}}</span></div>
+				<div class="row"><span class="col">状态: {{item.statusName}}</span></div>
+			</div>
+			<div class="card" style="border-radius:5px;">
+				<h6 style="text-align:center;font-size:18px;">单据</h6>
+				<div style="border-bottom:1px solid #999999;"></div>
+				<!--<div class="row col padding">
+					<h5>日&nbsp;&nbsp;&nbsp;&nbsp;期：<span class="text-right">{{item.sellTime| date:'yyyy-MM-dd'}}</span></h5>
+					<h5>收银员：{{item.sellerEmployee.workName}}</h5>
+					<h5>类&nbsp;&nbsp;&nbsp;&nbsp;型：{{item.sellTypeName}}</h5>
+					<h5>状&nbsp;&nbsp;&nbsp;&nbsp;态：{{item.statusName}}</h5>
+					<h5>总&nbsp;&nbsp;&nbsp;&nbsp;额：{{item.totalAmount}}</h5>
+					<h5>实&nbsp;&nbsp;&nbsp;&nbsp;收：{{item.sellAmount}}</h5>
+					<h5>数&nbsp;&nbsp;&nbsp;&nbsp;量：{{item.commodityNum}}</h5>
+					<h5>折&nbsp;&nbsp;&nbsp;&nbsp;扣：{{item.discount}}</h5>
+					<h5>茶位费：{{item.teaAmount}}</h5>
+					<h5>成&nbsp;&nbsp;&nbsp;&nbsp;本：{{item.costAmount}}</h5>
+					<h5>利&nbsp;&nbsp;&nbsp;&nbsp;润：{{item.gainAmount}}</h5>
+					<h5>流水号：{{item.id}}</h5>
+				</div>-->
+				<div style="padding:0 5px;font-size:15px;color:#8b8b8b" >
+					<div class="row">
+					<span class="col col-25">流水号：</span><span class="col col-75 text-right">{{item.id}}</span>
+					</div>
+					<div class="row">
+					<span class="col col-33">总&nbsp;&nbsp;&nbsp;&nbsp;额：</span><span class="col col-67 text-right">{{item.totalAmount|number:2}}</span>
+					</div>
+					<div class="row">
+					<span class="col col-33">实&nbsp;&nbsp;&nbsp;&nbsp;收：</span><span class="col col-67 text-right">{{item.sellAmount|number:2}}</span>
+					</div>
+					<div class="row">
+					<span class="col col-33">折&nbsp;&nbsp;&nbsp;&nbsp;扣：</span><span class="col col-67 text-right">{{item.discount}}%</span>
+					</div>
+					<div class="row">
+					<span class="col col-33">茶位费：</span><span class="col col-67 text-right">{{item.teaAmount}}</span>
+					</div>
+					<div class="row">
+					<span class="col col-33">成&nbsp;&nbsp;&nbsp;&nbsp;本：</span><span class="col col-67 text-right">{{item.costAmount|number:2}}</span>
+					</div>
+					<div class="row">
+					<span class="col col-33">利&nbsp;&nbsp;&nbsp;&nbsp;润：</span><span class="col col-67 text-right">{{item.gainAmount|number:2}}</span>
+					</div>
+					<div class="row">
+					<span class="col col-33">日&nbsp;&nbsp;&nbsp;&nbsp;期：</span><span class="col col-67 text-right">{{item.sellTime| date:'yyyy-MM-dd'}}</span>
+					</div>
+					<!--<div class="row">
+					<span class="col col-33">收银员：</span><span class="col col-67 text-right">{{item.sellerEmployee.workName}}</span>
+					</div>
+					<div class="row">
+					<span class="col col-33">类&nbsp;&nbsp;&nbsp;&nbsp;型：</span><span class="col col-67 text-right">{{item.sellTypeName}}</span>
+					</div>
+					<div class="row">
+					<span class="col col-33">状&nbsp;&nbsp;&nbsp;&nbsp;态：</span><span class="col col-67 text-right">{{item.statusName}}</span>
+					</div>-->
+					<div class="row">
+					<span class="col col-33">数&nbsp;&nbsp;&nbsp;&nbsp;量：</span><span class="col col-67 text-right">{{item.commodityNum}}</span>
+					</div>
+				</div>
+				<div style="border-top:1px solid #999999;"></div>
+				<div class="row row-no-padding" ng-click="showDJDetail()">
+					<div class="col col-90 col-center" style="text-align:left;font-size:18px;padding-left:5px;">单据明细</div>
+					<button class="button icon ion-ios-arrow-right button-clear col col-10 col-center" style="padding-right:20px" ng-show="true"></i>
+				</div>
+				<div style="border-top:1px solid #999999;"></div>
+				<ion-list ng-show="data.isShowDJDetail" style="color:#8b8b8b;font-size:12px;text-align: center;">
+					<ion-item class="item no-padding" style="font-size:14px;">
+						<ul class="row">
+						<li class="col-25">商品名称</li>
+						<li class="col-25">数量</li>
+						<li class="col-25">应收金额</li>
+						<li class="col-25">备注</li>
+						</ul>
+					</ion-item>
+					<ion-item class="item no-padding" ng-repeat="item in sellDetailList" style="font-size:12px;">
+						<ul class="row">
+						<li class="col-25">{{item.commodityName}}</li>
+						<li class="col-25">{{item.sellNum}}</li>
+						<li class="col-25">{{item.sellAmount|number:2}}</li>
+						<li class="col-25">{{item.remark}}</li>				
+					    </ul>
+					</ion-item>
+				</ion-list>
+			</div>
+			</ion-content>
+			</ion-modal-view>
+		</script>
+
+		<!-- <script id="rjbbInfo.html" type="text/ng-template">
+			<ion-modal-view>
+			<div class="bar bar-header blue-bg">
+			<div class="buttons">
+			<button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="closeRjbbInfoModal()">
+			</button>
+			<h1 class="title white">商品销售</h1>
+			</div>
+			</div>
+			<ion-content class="has-header stable-bg">
+			<div class="row col paddingall light-bg">
+			<h5>时间：</h5>
+			<h5>销售总额：</h5>
+			<h5>现金支付:{{item.cashAmount| number:2}}</h5>
+			<h5>储值卡支付:{{item.preCashAmount| number:2}}</h5>
+			<h5>微信支付:{{item.wxPayAmount| number:2}}</h5>
+			<h5>支付宝支付:{{item.alipayAmount| number:2}}</h5>
+			<h5>银联卡支付:{{item.unionpayAmount| number:2}}</h5>
+			</div>
+			</ion-content>
+			</ion-modal-view>
+		</script> -->
+
+		<!-- <script id="queryHandover.html" type="text/ng-template">
+			<ion-modal-view>
+			<div class="bar bar-header bar-positive">
+			<div class="button-bar">
+			<div class="buttons right-buttons">
+			<h1 class="title">交接班查询</h1>
+			<button class="button  button-calm" ng-click="closeQueryHandoverModal()">关闭</button>
+			</div>
+			</div>
+			</div>
+			<ion-content class="has-header">
+			<div class="row" style="height:30px;padding:0px;">
+			<div class="col col-20 stable-bg " style="text-align: left;">
+			开始时间
+			</div>
+			<div class="col col-80" style="text-align: center;">
+			<input type="text" value=""  onclick="WdatePicker()" ng-model="data.startTime" id="startTimeHandover" style="height:25px;padding: 0px;" readonly="true">
+			</div>
+			</div>
+			<hr color="#0066cc">
+			<div class="row" style="height:30px;padding: 0px;">
+			<div class="col col-20 stable-bg " style="text-align: left;">
+			结束时间
+			</div>
+			<div class="col col-80" style="text-align: center;">
+			<input type="text" value=""  onclick="WdatePicker()" ng-model="data.endTime" id="endTimeHandover" style="height:25px;padding: 0px;" readonly="true">
+			</div>
+			<button class="button" ng-click="query();">
+			确定
+			</button>
+			</div>
+
+			</ion-content>
+			</ion-modal-view>
+		</script> -->
+
+		<!--  <script id="handover.html" type="text/ng-template">
+			<ion-modal-view>
+			<div class="bar bar-header blue-bg">
+			<div class="buttons">
+			<button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="closeHandoverModal()">
+			</button>
+			<h1 class="title white">交接班记录明细</h1>
+			</div>
+			</div>
+			<ion-content class="has-header">
+			<div class="row col paddingall">
+			<h5>日期：{{item.startTime| date:'MM-dd'}}</h5>
+			<h5>收银员：{{item.workName}}</h5>
+			<h5>工号：{{item.workId}}</h5>
+			<h5>开始时间：{{item.startTime| date:'HH:mm'}}</h5>
+			<h5>结束时间：{{item.endTime| date:'HH:mm'}}</h5>
+			<h5>备用金:{{item.pettyCash| number:2}}</h5>
+			<h5>销售总额：{{item.sellAmount| number:2}}</h5>
+			<h5>单数：{{item.sellNum| number:2}}</h5>
+			<h5>现金：{{item.cashAmount| number:2}}</h5>
+			<h5>银联卡：{{item.unionpayAmount| number:2}}</h5>
+			<h5>支付宝：{{item.alipayAmount| number:2}}</h5>
+			<h5>微信：{{item.wxpayAmount| number:2}}</h5>
+			<h5>储值卡：{{item.prepayAmount| number:2}}</h5>
+			<h5>退款：{{item.returnAmount| number:2}}</h5>
+			<h5>退款现金：{{item.returnCashAmount| number:2}}</h5>
+			<h5>反结账：{{item.reverseSellAmount| number:2}}</h5>
+			<h5>反结账现金：{{item.reverseCashAmount| number:2}}</h5>
+			<h5>充值：{{item.sellAmount| number:2}}</h5>
+			<h5>充值单数：{{item.rechargeNum| number:2}}</h5>
+			<h5>充值金额：{{item.preAmount| number:2}}</h5>
+			<h5>赠送金额：{{item.preCashAmount| number:2}}</h5>
+			</div>
+			</ion-content>
+			</ion-modal-view>
+		</script>-->
+
+	 <!--<script id="SpxsDetailModal.html" type="text/ng-template">
+			<ion-modal-view>
+			<div class="bar bar-header bg-color">
+			<div class="button-bar">
+			<div class="buttons right-buttons">
+			<button class="button icon ion-ios-arrow-left button-clear" color="#ffffff" ng-click="closeSpxsDetailModal()"></button>
+			<h1 class="title">{{item.wpCommodityInfoEntity.name}}</h1>
+			</div>
+			</div>
+			</div>
+			<ion-content class="has-header stable-bg">
+
+			<ul class="list light-bg ">
+			<li class="row main-boder-bottom padding-10">
+				<div class="col text-left">商品分类</div>
+				<div class="col text-right"></div>
+			</li>
+			<li class="row main-boder-bottom padding-10">
+				<div class="col text-left">销售数量</div>
+				<div class="col text-right">{{item.wpSellDetailEntity.sellNum}}</div>
+			</li>
+			<li class="row main-boder-bottom padding-10">
+				<div class="col text-left">现有库存</div>
+				<div class="col text-right">{{item.wpCommodityInfoEntity.stock}}</div>
+			</li>
+			<li class="row main-boder-bottom padding-10">
+				<div class="col text-left">商品总价</div>
+				<div class="col text-right">{{item.wpSellDetailEntity.totalAmount}}</div>
+			</li>
+			<li class="row main-boder-bottom padding-10">
+				<div class="col text-left">实收金额</div>
+				<div class="col text-right">{{item.wpSellDetailEntity.sellAmount}}</div>
+			</li>
+			<li class="row main-boder-bottom padding-10">
+				<div class="col text-left">利润</div>
+				<div class="col text-right">{{item.wpSellDetailEntity.gainAmount}}</div>
+			</li>
+			</ul>
+			</ion-content>
+			</ion-modal-view>
+		</script>-->
+
+	</body>
+</html>

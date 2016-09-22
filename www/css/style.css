@@ -1,0 +1,75 @@
+/* Empty. Add your own CSS if you like */
+.aibao-bg{
+	background-image: url(../img/bg.png);
+	background-size: 100% 100%;
+}
+.aibao-logo img{
+	width: 100%;
+	height:auto;
+}
+.login-box{
+	border-radius:10px;
+}
+.main-boder-right{
+	border-right: 1px solid #d6d6d6;
+}
+.main-boder-top{
+	border-top: 1px solid #d6d6d6;
+}
+.main-boder-bottom{
+	border-bottom: 1px solid #d6d6d6;
+}
+.no-padding{
+	padding: 0px;
+}
+.paddinglr{
+	padding-left:10px;
+	padding-right:10px;
+}
+.paddingall{
+	padding: 15px;
+}
+.padding10{
+	padding-top: 10px;
+	padding-bottom:10px;
+}
+.padding18{
+	padding-top: 18px;
+	padding-bottom:18px;
+}
+.padding37{
+	padding-top: 37px;
+	padding-bottom:37px;
+}
+.padding65{
+	padding-top: 65px;
+	padding-bottom:65px;
+}
+.padding20{
+	padding-top: 20px;
+	padding-bottom:20px;
+}
+.margin5{
+	margin-top:5px;
+	margin-bottom: 5px;
+}
+.margin10{
+	margin-top:10px;
+	margin-bottom: 10px;
+}
+.img40{
+	width: 40px;
+	height:40px;
+}
+.margin-top10{
+	margin-top: 10px;
+}
+.margin-bottom10{
+	margin-bottom:10px;
+}
+.blue-bg{
+	background-color: #01afec;
+}
+.white{
+	color: #ffffff;
+}

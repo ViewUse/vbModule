@@ -1,0 +1,262 @@
+<ion-view view-title="交接班明细"  ng-controller="HandoverDetailCtrl">
+	<ion-nav-bar class="bg-color white" align-title="center">
+       <ion-nav-buttons side="left">
+          <button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+       </ion-nav-buttons>
+      
+     </ion-nav-bar>
+
+  <!-- <div class="bar bar-header bg-color">
+    <div class="button-bar">
+      <div class="buttons right-buttons">
+        <button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+        <h1 class="title white">交接班记录明细</h1>
+        </button>
+      </div>
+    </div>
+  </div> -->
+
+  <ion-content class="scroll-content has-header">
+
+      <div class="bg-color">
+      	<div class="row no-padding">
+    		<h4 class="col-50 text-center" style="color:#d0ebff">
+	    		<i class="icon ion-person" style="font-size: 24px;color:#d0ebff;padding-right:10px;"></i>
+	    		<span ng-bind="workName"></span>
+    	 	</h4>
+    		<h5 class="col-33 text-right border-left col-center" style="margin-left:17%;color:#d0ebff;background-color:#0e6bae;">
+    			<div style="padding-right:10px;padding-top:7px;">{{startTime| date:'yyyy-MM-dd'}}</div>
+    		</h5>
+    	</div>
+
+    	<div class="row">
+    		<h5 class="col-50 text-center" style="color:#d0ebff;border-right: 1px solid #d0ebff;">工号: <span ng-bind="workId"></span> </h5>
+    		<h5 class="col-50 text-center" style="color:#d0ebff">时间段: <span>{{startTime| date:'HH:mm'}}~{{endTime| date:'HH:mm'}}</span> </h5>
+    	</div>
+      </div>
+      
+      <div style="height:164px">
+	      <div class="row no-padding main-boder-bottom" style="height:50%">
+	      	<div class="col col-50 col-center main-boder-right no-padding" > 
+	      		<div class="row no-padding">
+		      		<div class="col-center no-padding">
+		      			<img ng-src="img/amount.svg" class="img32" />
+		      		</div>
+		      		<ul class="col no-padding">
+		      			<p>销售总额</p>
+		      			<li style="color:#999;" ng-bind="sellAmount|number:2"></li>
+		      		</ul>
+	      		</div>
+	      	</div>
+	      	<div class="col col-50 col-center no-padding" > 
+	      		<div class="row no-padding">
+		      		<div class="col-center no-padding">
+		      			<img ng-src="img/petty.svg" class="img32" />
+		      		</div>
+		      		<ul class="col no-padding">
+		      			<p>备用金</p>
+		      			<li style="color:#999;" ng-bind="pettyCash|number:2"></li>
+		      		</ul>
+	      		</div>
+	      	</div>
+	      </div>
+	      
+	      <div class="row no-padding main-boder-bottom" style="margin-top: 0px;height:50%">
+	      	<div class="col col-50 col-center main-boder-right no-padding"> 
+	      		<div class="row no-padding">
+		      		<div class="col-center no-padding">
+		      			<img ng-src="img/num.svg" class="img32" />
+		      		</div>
+		      		<ul class="col no-padding">
+		      			<p>单数</p>
+		      			<li style="color:#999;" ng-bind="sellNum"></li>
+		      		</ul>
+	      		</div>
+	      	</div>
+	      	<div class="col col-50 col-center no-padding" > 
+	      		<div class="row no-padding">
+		      		<div class="col-center no-padding">
+		      			<img ng-src="img/input.svg" class="img32" />
+		      		</div>
+		      		<ul class="col no-padding">
+		      			<p >坐实金额</p>
+		      			<li style="color:#999;" ng-bind="inputAmount"></li>
+		      		</ul>
+	      		</div>
+	      	</div>
+	      </div>
+      </div>
+      <div style="background-color:#eaf4fa;height:10px;"></div>
+     
+     <div class="light-bg">
+	   <ul class="row no-padding main-boder-bottom">
+	      	<li id="payType" class="col-50 payt" ng-click="showHdetail(1);">支付方式<span class="hDetail1"></span></li>
+	      	<li id="bill" class="col-50 billt" ng-click="showHdetail(2);">退款账单<span class="hDetail2"></span></li>
+	   </ul>
+      	
+      <ul ng-show="hDetail1 " style="padding-left:16px">
+      	<li class="row li-pay">
+			<div class="col col-center text-left no-padding" >现金</div>
+			<div class="col col-center padding-r" ng-bind="cashAmount|number:2"></div>
+		</li>
+		<li class="row li-pay">
+			<div class="col col-center text-left no-padding" >微信</div>
+			<div class="col col-center padding-r" ng-bind="wxpayAmount|number:2" ></div>
+		</li>
+		<li class="row li-pay">
+			<div class="col col-center text-left no-padding" >支付宝</div>
+			<div class="col col-center padding-r" ng-bind="alipayAmount|number:2"></div>
+		</li>
+		<li class="row li-pay">
+			<div class="col col-center text-left no-padding" >银联卡</div>
+			<div class="col col-center padding-r" ng-bind="unionpayAmount|number:2"></div>
+		</li>
+		<li class="row li-pay">
+			<div class="col col-center text-left no-padding" >储值卡</div>
+			<div class="col col-center padding-r" ng-bind="prepayAmount|number:2"></div>
+		</li>
+      </ul>
+       	
+      <ul ng-show="hDetail2" style="padding-left:16px">
+      	<li class="row li-bill">
+			<div class="col col-center text-left no-padding" >退款</div>
+			<div class="col col-center padding-r" ng-bind="returnAmount|number:2"></div>
+		</li>
+		<li class="row li-bill">
+			<div class="col col-center text-left no-padding" >退款现金</div>
+			<div class="col col-center padding-r" ng-bind="returnCashAmount|number:2" ></div>
+		</li>
+		<li class="row li-bill">
+			<div class="col col-center text-left no-padding" >反结账</div>
+			<div class="col col-center padding-r" ng-bind="reverseSellAmount|number:2"></div>
+		</li>
+		<li class="row li-bill">
+			<div class="col  col-center text-left no-padding" >反结账现金</div>
+			<div class="col col-center padding-r" ng-bind="reverseCashAmount|number:2"></div>
+		</li>
+      </ul>
+      </div>
+      
+       <!--  <div class="row no-padding main-boder-bottom" style="margin-top:0px">
+      	<div class="col col-50 jz-center main-boder-right"> 
+      		<img ng-src="img/amount.png" class="img32"/>
+      		<ul>
+      			<li>单数</li>
+      			<li style="color:#333" ng-bind="sellNum"></li>
+      		</ul>
+      	</div>
+      	<div class="col col-50 jz-center" style="padding:16px 0px"> 
+      		<img ng-src="img/amount.png" class="img32"/>
+      		<ul>
+      			<li>坐实金额</li>
+      			<li style="color:#333" ng-bind="inputAmount"></li>
+      		</ul>
+      	</div>
+      </div>-->
+      
+    <!-- <p style="border:5px solid #f2f2f2;margin:0px"></p>	
+	<div id="hig" calc-height>
+	 
+      <div class="row no-padding" style="margin-top:0px;height:33.3%">
+        <div class="col no-padding " style="height:100%;padding-bottom:10px;">
+          <div class="row no-padding main-boder-bottom" style="height:50%;text-align:center">
+            <div class="col col-50 col-center" >
+              <p style="font-size: 16px;margin-bottom:0px;" >销售总额</p>
+              <span class="p-green margin-b" ></span>
+            </div>
+            <span class="main-boder-right" style="height:100%;"></span>
+            <div class="col col-50  col-center" >
+              <p style="font-size: 16px;margin-bottom:0px;">备用金</p>
+              <span class="p-green margin-b" ng-bind="pettyCash|number:2"></span>
+            </div>
+          </div>
+
+          <div class="row no-padding  main-boder-bottom" style="height:50%;text-align:center;margin-top:0px;">
+            <div class="col col-50 col-center" >
+              <p style="font-size: 16px;margin-bottom:0px;">单数</p>
+              <span class="p-green margin-b" ng-bind="sellNum"></span>
+            </div>
+            <span class="main-boder-right" style="height:100%;"></span>--> 
+            <!--<div class="col col-50 col-center">
+              <p style="font-size: 16px;margin-bottom:0px;">现金</p>
+              <span class="p-green margin-b" ng-bind="cashAmount|number:2"></span>
+            </div>-->
+           <!-- <div class="col col-50 col-center">
+              <p style="font-size: 16px;margin-bottom:0px;">手动输入金额</p>
+              <span class="p-green margin-b" ng-bind="inputAmount"></span>
+            </div>
+          </div> 
+          <p style="border:5px solid #f2f2f2;margin:0px"></p>           
+        </div>
+      
+      </div> 
+      
+
+      <div class="row no-padding" style="margin-top:0px;height:33.3%;">
+        <div class="col no-padding " style="height:100%;padding-bottom:10px;">
+          <div class="row no-padding main-boder-bottom" style="height:50%;text-align:center">
+            <div class="col col-50 col-center" >
+              <p style="font-size: 16px;margin-bottom:0px;" >银联卡</p>
+              <span class="p-blue margin-b" ng-bind="unionpayAmount|number:2"></p>
+            </div>
+            <span class="main-boder-right" style="height:100%;"></span>
+            <div class="col col-50 col-center" >
+              <p style="font-size: 16px;margin-bottom:0px;">储值卡</p>
+              <span class="p-blue margin-b" ng-bind="prepayAmount|number:2"></span>
+            </div>
+          </div>
+
+          <div class="row no-padding  main-boder-bottom" style="height:50%;text-align:center;margin-top:0px;">
+             <div class="col col-33 col-center" >
+              <p style="font-size: 16px;margin-bottom:0px;">现金</p>
+              <span class="p-blue margin-b" ng-bind="cashAmount|number:2"></span>
+            </div>
+            <span class="main-boder-right" style="height:100%;"></span>
+            <div class="col col-33 col-center" >
+              <p style="font-size: 16px;margin-bottom:0px;">支付宝</p>
+              <span class="p-blue margin-b" ng-bind="alipayAmount|number:2"></span>
+            </div>
+            <span class="main-boder-right" style="height:100%;"></span>
+            <div class="col col-33 col-center">
+              <p style="font-size: 16px;margin-bottom:0px;">微信</p>
+              <span class="p-blue margin-b" ng-bind="wxpayAmount|number:2"></span>
+            </div>
+          </div>  
+          <p style="border:5px solid #f2f2f2;margin:0px"></p>      
+        </div>
+       
+      </div>
+       
+      <div class="row no-padding" style="margin-top:0px;height:33.3%">
+        <div class="col no-padding " style="height:100%;padding-bottom:10px">
+          <div class="row no-padding main-boder-bottom" style="height:50%;text-align:center">
+            <div class="col col-50 col-center" >
+              <p style="font-size: 16px;margin-bottom:0px;" >退款</p>
+              <span class="p-red margin-b" ng-bind="returnAmount|number:2"></span>
+            </div>
+            <span class="main-boder-right" style="height:100%;"></span>
+            <div class="col col-50 col-center" >
+              <p style="font-size: 16px;margin-bottom:0px;">退款现金</p>
+              <span class="p-red margin-b" ng-bind="returnCashAmount|number:2"></span>
+            </div>
+          </div>
+
+          <div class="row no-padding  main-boder-bottom" style="height:50%;text-align:center;margin-top:0px;">
+            <div class="col col-50 col-center" >
+              <p style="font-size: 16px;margin-bottom:0px;">反结账</p>
+              <span class="p-red margin-b" ng-bind="reverseSellAmount|number:2"></span>
+            </div>
+            <span class="main-boder-right" style="height:100%;"></span>
+            <div class="col col-50 col-center">
+              <p style="font-size: 16px;margin-bottom:0px;">反结账现金</p>
+              <span class="p-red margin-b" ng-bind="reverseCashAmount|number:2"></span>
+            </div>
+          </div>
+		  <p style="border:5px solid #f2f2f2;margin:0px"></p>
+        </div>
+      </div> 
+     </div> --> 
+       
+  </ion-content>
+
+</ion-view>

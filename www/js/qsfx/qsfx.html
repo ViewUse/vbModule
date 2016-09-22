@@ -1,0 +1,56 @@
+<ion-view view-title="趋势分析" name="qsfx-view" ng-controller="QsfxCtrl">
+	<ion-nav-bar class="bg-color white" align-title="center">
+       <ion-nav-buttons side="left">
+         <button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+       </ion-nav-buttons>
+       <ion-nav-buttons side="right">
+       	 <button class="button button-clear button-light" ng-click="dealFilter();">分店对比</button>
+       </ion-nav-buttons>
+     </ion-nav-bar>
+
+	<!--<div class="scroll-content has-header">
+		<ion-content class="stable-bg">
+	<div class="jz-center" style="padding: 10px;">
+		<button ng-click="change(1);" class="jz-center"	style="width: 60px; height: 30px; border: 1px solid #0000FF; border-right: 0px; border-top-left-radius: 5px; border-bottom-left-radius: 5px;">日</button>
+		<button ng-click="change(2);" class="jz-center"	style="width: 60px; height: 30px; border: 1px solid #0000FF; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">月</button>
+	</div>
+	<div id="main" style="height: 250px; width:100%; border: 1px solid #ccc; padding: 10px;"></div>
+     <div style="padding: 16px;font-size:16px;">
+     <h4 id="qs-title" style="text-align: center">七日销售数据</h4>
+     	商品总价：{{costAmount}}<br/>利润：{{gainAmount}}<br/>商品数量：{{sellNum}}<br/>销售单数：{{countSell}}<br/>实收金额：{{sellAmount}}
+     </div>
+     <ul class="list">
+			<li class="item" ng-repeat="item in items">时间：{{item.dateName}}<br/>销售单数：{{item.countSell}}<br/>商品总价：{{item.costAmount}}<br/>实收金额：{{item.sellAmount}}<br/>利润：{{item.gainAmount}}<br/>商品数量：{{item.sellNum}}</li>
+	   </ul>
+	</ion-content>
+	</div>-->
+	<ion-content class="has-header stable-bg" scroll="false"> 
+		
+			<div style="height:50px;">	
+				<div class="row border-center" style="padding:10px">
+					<!-- <div class="col col-75"></div>
+					<div class="row no-padding"></div> -->
+					<div id="day" ng-click="change(1);" class="col col-33 border-left" style="background-color:#007fdb;color:#ffffff;" >日</div>
+					<div id="month" ng-click="change(2);" class="col col-33 border-right" style="background-color:#dddddd;color:#007fdb;border:1px solid #007fdb;" >月</div>
+					<!-- <div class="col col-20 border-left border-right" style="background-color:#999;padding:5px;">连锁店</div> -->
+				</div>
+				<!--<div class="jz-center text-center" style="padding: 10px;">
+					<button id="day" ng-click="change(1);" class="jz-center border-left"	style="width: 100px;background-color:#007fdb;color:#ffffff;border: 1px solid #0000FF; border-right: 0px;">日</button>
+					<button id="month" ng-click="change(2);" class="jz-center border-right" style="width: 100px;border: 1px solid #0000FF;background-color:#dddddd;color:#007fdb;">月</button>
+				</div>  -->
+		  	</div>
+		  	<ion-scroll calc-height>
+				<div id="main" style="width:100%;height:100%;border:1px solid #ccc;padding:10px;" calc-height></div>
+			</ion-scroll>
+		    <!-- <ion-scroll id="s1" calc-height delegate-handle="qsMainScroll">
+			    <div style="padding: 16px;font-size:16px;">
+			    <h4 id="qs-title" style="text-align: center">七日销售数据</h4>
+			     	商品总价：{{costAmount|number:2}}<br/>利润：{{gainAmount|number:2}}<br/>商品数量：{{sellNum}}<br/>销售单数：{{countSell}}<br/>实收金额：{{sellAmount|number:2}}
+			    </div>
+			    <ul class="list">
+					<li class="item" ng-repeat="item in items">时间：{{item.dateName}}<br/>销售单数：{{item.countSell}}<br/>商品总价：{{item.costAmount|number:2}}<br/>实收金额：{{item.sellAmount|number:2}}<br/>利润：{{item.gainAmount|number:2}}<br/>商品数量：{{item.sellNum}}</li>
+				</ul>
+			</ion-scroll> -->
+		
+	</ion-content>
+</ion-view>

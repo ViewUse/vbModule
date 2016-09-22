@@ -1,0 +1,10 @@
+<ion-scroll>
+	<!-- <div class="row col text-center light" style="border:1px solid #999;line-height:30px;background-color:#298271;margin:5px 0;border-radius:5px;" ng-click="shopTouch(item);">总店</div>
+	<div class="row col text-center light" style="border:1px solid #999;line-height:30px;background-color:#298271;margin:5px 0;border-radius:5px;" ng-click="shopTouch(item);">东圃分店</div>
+	<div class="row col text-center light" style="border:1px solid #999;line-height:30px;background-color:#298271;margin:5px 0;border-radius:5px;" ng-click="shopTouch(item);">车陂分店</div>
+	<div class="row col text-center light" style="border:1px solid #999;line-height:30px;background-color:#298271;margin:5px 0;border-radius:5px;" ng-click="shopTouch(item);">机场分店</div>
+	<div class="row col text-center light" style="border:1px solid #999;line-height:30px;background-color:#298271;margin:5px 0;border-radius:5px;" ng-click="shopTouch(item);">天河分店</div> -->
+	<div class="row col text-center light" ng-repeat="item in followSubShopps" style="border:1px solid #999;line-height:25px;margin:8px 0;border-radius:50em;" ng-click="shopTouch(item);" ng-class="curQueryShop.name==item.name?'btn-click':'btn-blur'">
+		<span ng-bind="item.name"></span>
+	</div>
+</ion-scroll>

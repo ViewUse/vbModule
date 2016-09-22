@@ -1,0 +1,27 @@
+<ion-view view-title="日结报表" name="rjbb-view" ng-controller="RjbbCtrl">
+	<ion-nav-bar class="bg-color white" align-title="center">
+       <ion-nav-buttons side="left">
+         <button class="button icon ion-ios-arrow-left button-clear" style="color: #FFFFFF" ng-click="goBack();"></button>
+       </ion-nav-buttons>
+       <ion-nav-buttons side="right" >
+      	 <button class="button button-clear" style="color:#ffffff;font-size:14px;" ng-click="handover();">交接班</button>
+       </ion-nav-buttons>
+     </ion-nav-bar>
+	<!-- <div class="bar bar-header bg-color">
+		<div class="button-bar">
+			<div class="buttons right-buttons">
+				<button class="button icon ion-ios-arrow-left button-clear button-light"  ng-click="goBack();"></button>
+				<h1 class="title white">日结报表</h1>
+				<button class="button button-clear" style="color:#ffffff;font-size:14px;" ng-click="handover();">交接班</button>
+			</div>
+		</div>
+	</div> -->
+
+	<ion-content class="has-header light-bg" scroll="false">
+		<div class="row">
+			<div class="col col-25" ng-if="isHasSubShop" ng-include="'templates/subshop.html'"></div>
+			<div ng-class="isHasSubShop?'col col-75':'col col-100'" ng-include="'templates/rjbb-i.html'"></div>
+		</div>
+	</ion-content>
+
+</ion-view>

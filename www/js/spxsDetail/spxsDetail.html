@@ -1,0 +1,39 @@
+<ion-view view-title="{{name}}"  ng-controller="SpxsDetailCtrl">  <!-- 商品销售明细 -->
+	
+	<ion-nav-bar class="bg-color white" align-title="center">
+       <ion-nav-buttons side="left">
+         <button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+       </ion-nav-buttons>
+     </ion-nav-bar>
+
+ 	<ion-content class="has-header stable-bg">
+		<div class="light-bg">
+		<ul class="list">
+		<li class="row item padding-10">
+			<div class="col text-left" style="color:#666666">商品分类</div>
+			<div class="col text-right" ng-bind="productType" ></div>
+		</li>
+		<li class="row item padding-10" style="margin-top:0px;">
+			<div class="col text-left" style="color:#666666">销售数量</div>
+			<div class="col text-right"ng-bind="sellNum" ></div>
+		</li>
+		<li class="row item padding-10" style="margin-top:0px;">
+			<div class="col text-left" style="color:#666666">现有库存</div>
+			<div class="col text-right"ng-bind="stock"></div>
+		</li>
+		<li class="row item padding-10" style="margin-top:0px;">
+			<div class="col text-left" style="color:#666666">商品总价</div>
+			<div class="col text-right"ng-bind="productCost|number:2"></div>
+		</li>
+		<li class="row item padding-10" style="margin-top:0px;">
+			<div class="col text-left" style="color:#666666">实收金额</div>
+			<div class="col text-right"ng-bind="realityMoney|number:2"></div>
+		</li>
+		<li class="row item padding-10" style="margin-top:0px;">
+			<div class="col text-left" style="color:#666666">利润</div>
+			<div class="col text-right" ng-bind="profit|number:2"></div>
+		</li>
+		</ul>
+		</div>
+	</ion-content>
+</ion-view>

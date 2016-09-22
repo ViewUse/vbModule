@@ -1,0 +1,56 @@
+<div id="dateDiv">
+<div class="row stable-bg no-padding" id ="queryDiv" style="background:#EAEAEA;">
+  <ul class="list" >
+    <label class="item item-input-inset">
+      <div class="input-label">
+        开始时间
+      </div>
+      <input type="text" value="data.startTime" class="Wdate" ng-model="data.startTime" ng-click="showDatePicker(0,$event)" id="startTime" style="height:25px;padding:0px;" readonly="true">
+    </label>
+    <label class="item item-input item-input-inset">
+      <div class="input-label">
+        结束时间
+      </div>
+      <input type="text" class="Wdate" value="data.endTime"  ng-click="showDatePicker(1,$event)" ng-model="data.endTime" id="endTime" style="height:25px;padding: 0px;" readonly="true">
+    </label>
+    <label class="item item-input item-select">
+      <div class="input-label">
+        图表类型
+      </div>
+      <select ng-model="data.employeeId">
+        <option value="">柱形图表</option>
+        <option  value="">曲线图表</option>
+      </select>
+    </label>
+
+    <div class="item item-divider">
+      <b>显示数据</b>
+    </div>
+    <label class="item">
+      <input type="checkbox" ng-model="data.sellAmountFlag" style="width:40px">销售总额
+    </label>
+    <label class="item">
+      <input type="checkbox" ng-model="data.gainAmountFlag" style="width:40px">利润
+    </label>
+    <label class="item">
+      <input type="checkbox" ng-model="data.sellNumFlag" style="width:40px">数量
+    </label>
+
+
+  </ul>
+</div>
+
+  <div class="row no-padding">
+    <div class="col col-50">
+      <button class="button button-block button-calm" ng-click="hideQuery();">
+        取消
+      </button>
+    </div>
+    <div class="col col-50">
+      <button class="button button-block button-calm" ng-click="query();">
+        确定
+      </button>
+    </div>
+  </div>
+  <div id="dateQueryDiv" ng-hide="!data.isShowPicker" style="position:absolute;left:0px;z-index:999;"></div>
+</div>

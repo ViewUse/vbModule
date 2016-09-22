@@ -1,0 +1,62 @@
+<ion-view view-title="筛选" name="sx-view" ng-controller="SxCtrl">
+	<ion-nav-bar class="bg-color white" align-title="center">
+       <ion-nav-buttons side="left">
+         <button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+       </ion-nav-buttons>
+     </ion-nav-bar>
+	<!--  <div class="bar bar-header blue-bg">
+		<div class="button-bar">
+			<div class="buttons right-buttons">
+				<button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+				<h1 class="title white">筛选</h1>
+			</div>
+		</div>
+	</div>-->
+	<div class="scroll-content has-header">
+		<div class="row-center col no-padding">
+			<ul class="list">
+				<label class="item item-input item-select">
+					<div class="input-label">
+						收银员
+					</div>
+					<select>
+						<option>小张</option>
+						<option selected>全部收银员</option>
+						<option>小廖</option>
+					</select> </label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						类型
+					</div>
+					<select>
+						<option>退货</option>
+						<option selected>全部类型</option>
+						<option>反结账</option>
+					</select> </label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						状态
+					</div>
+					<select>
+						<option>挂单</option>
+						<option selected>全部</option>
+						<option>完成</option>
+					</select> </label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						开始时间
+					</div>
+					<input type="text" value=""  onclick="WdatePicker()" ng-model="data.endTime" id="endTime" style="height:25px;padding: 0px;" readonly="true">
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						结束时间
+					</div>
+					<input type="text" value=""  onclick="WdatePicker()" ng-model="data.endTime" id="endTime" style="height:25px;padding: 0px;" readonly="true">
+				</label>
+				<button class="button button-block button-calm" ng-click="">
+					搜索
+				</button>
+		</div>
+	</div>
+</ion-view>

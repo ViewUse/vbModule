@@ -1,0 +1,100 @@
+<ion-view view-title="反结账单据详情"  ng-controller="FjzdjDetailCtrl">
+	<ion-nav-bar class="bg-color white" align-title="center">
+       <ion-nav-buttons side="left">
+         <button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+       </ion-nav-buttons>
+     </ion-nav-bar>
+ 
+    <ion-content  class="scroll-content has-header stable-bg">
+
+        <div class="card" style="border-radius:5px;background:white;">
+
+          <div class="row">
+            <span class="col col-25">单据：</span><span class="col col-75 text-right"ng-bind="sellTimeStr"></span>
+          </div>
+          <div class="main-boder-bottom"></div>
+
+          <div style="background-color:white;color:#666666;font-size:15px;">
+
+            <div class="row">
+              <span class="col col-33">收银员：</span><span class="col col-67 text-right"ng-bind="workName"></span>
+            </div>
+            <div class="row">
+              <span class="col col-25">流水号：</span><span class="col col-75 text-right" ng-bind="id"></span>
+            </div>
+            <div class="row">
+              <span class="col col-33">总&nbsp;&nbsp;&nbsp;&nbsp;价：</span><span class="col col-67 text-right"ng-bind="totalAmount|number:2"></span>
+            </div>
+            <div class="row">
+              <span class="col col-33">实&nbsp;&nbsp;&nbsp;&nbsp;收：</span><span class="col col-67 text-right"ng-bind="factAmount|number:2"></span>
+            </div>
+
+            <div class="row">
+              <span class="col col-33">利&nbsp;&nbsp;&nbsp;&nbsp;润：</span><span class="col col-67 text-right" ng-bind="gainAmount|number:2"></span>
+            </div>
+
+            <div class="row">
+              <span class="col col-33">数&nbsp;&nbsp;&nbsp;&nbsp;量：</span><span class="col col-67 text-right"ng-bind="commodityNum"></span>
+            </div>
+
+
+            <div class="row">
+              <span class="col col-33">状&nbsp;&nbsp;&nbsp;&nbsp;态：</span><span class="col col-67 text-right"ng-bind="statusName"></span>
+            </div>
+
+
+            <div class="row">
+              <span class="col col-33">会&nbsp;&nbsp;&nbsp;&nbsp;员：</span><span class="col col-67 text-right"ng-bind="mobile"></span>
+            </div>
+
+            <div class="row">
+              <span class="col col-33">类&nbsp;&nbsp;&nbsp;&nbsp;型：</span><span class="col col-67 text-right"ng-bind="sellTypeName"></span>
+            </div>
+
+
+          </div>
+          <div class="main-boder-top"></div>
+
+          <div class="row no-padding" id="showList">
+            <div class="col col-90 col-center" style="text-align:left;font-size:18px;padding-left:10px;">单据明细</div>
+            <button class="button icon ion-ios-arrow-right button-clear col col-10 col-center" style="padding-right:20px"></i>
+          </div>
+
+          <div id="detailList" style="color:black;display:none;">
+          
+          <ion-list ng-show="detailList.length>0">
+          	<div class="main-boder-bottom"></div>
+            <ion-item style="padding:5px;text-align:center;font-size: 14px"  >
+	            <ul class="row no-padding"  >
+	              <li class="col-20">商品名称</li>
+	              <li class="col-20">数量</li>
+	              <li class="col-20">价格</li>
+	              <li class="col-20">实收金额</li>
+	              <li class="col-20">利润</li>
+	            </ul>
+	        </ion-item>
+            <ion-item style="padding:5px;text-align:center;font-size: 12px" ng-repeat="item in detailList" >
+	            <ul class="row no-padding "  >
+	              <li class="col-20" ng-bind="item.commodityName"></li>
+	              <li class="col-20" ng-bind="item.sellNum"></li>
+	              <li class="col-20" ng-bind="item.commodityPrice|number:2"></li>
+	              <li class="col-20" ng-bind="item.sellAmount|number:2"></li>
+	              <li class="col-20" ng-bind="item.gainAmount|number:2"></li>
+	            </ul>
+            </ion-item >
+		</ion-list>
+            <div class="row" ng-show="detailList.length<1">
+              <div class="col col-100">
+                <center class="assertive">
+                  暂无数据
+                </center>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+    </ion-content>
+
+
+</ion-view>

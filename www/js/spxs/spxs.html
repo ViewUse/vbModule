@@ -1,0 +1,121 @@
+<ion-view view-title="商品销售" name="spxs-view" ng-controller="SpxsCtrl">
+	<ion-nav-bar class="bg-color white" align-title="center">
+       <ion-nav-buttons side="left">
+         <button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+       </ion-nav-buttons>
+       <ion-nav-buttons side="right" >
+      	 <button class="button button-clear" ng-click="showQuery()" style="color:#ffffff;font-size:14px">筛选</button>
+       </ion-nav-buttons>
+     </ion-nav-bar>
+
+	<ion-content class="has-header" scroll="false"><!-- scroll="false" -->
+		<!--  <div class="row stable-bg" id ="queryDiv" style="height:225px;padding:0px;display: none;position:absolute;top: 0;left: 0px;z-index: 999999;background:#EAEAEA;">
+			<ul class="list">
+				<label class="item item-input item-select">
+					<div class="input-label">
+						开始时间
+					</div>
+					<input type="text" value=""  onclick="WdatePicker()" ng-model="data.startTime" id="startTime" style="height:25px;padding: 0px;" readonly="true">
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						结束时间
+					</div>
+					<input type="text" value=""  onclick="WdatePicker()" ng-model="data.endTime" id="endTime" style="height:25px;padding: 0px;" readonly="true">
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						收银员
+					</div>
+					<select ng-model="data.employeeId">
+						<option>全部</option>
+						<option ng-repeat="item in employeeList" value="{{item.id}}">{{item.workName}}</option>
+					</select> </label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						商品分类
+					</div>
+					<select>
+						<option>全部</option>
+						<option ng-repeat="item in commodityTypeList" ng-model="data.commodityTypeId" value="{{item[0]}}">{{item[1]}}</option>
+					</select> </label>
+				 <label class="item item-input item-select">
+					<div class="input-label">
+						供应商
+					</div>
+					<select>
+						<option>全部</option>
+						<option ng-repeat="item in supplierInfoList" ng-model="data.supplierId" value="{{item.id}}">{{item.name}}</option>
+					</select> </label>
+				</ul>
+				<div class="item item-divider">
+		    		<a class="title">排序方式</a>
+		    	</div>
+		    	<ion-radio ng-repeat="item in sortDataList" ng-value="item.value" ng-model="data.sortType" ng-change="">{{item.text}}
+		    	</ion-radio>
+				<div class="row no-padding">
+					<div class="col col-50">
+						<button class="button button-block button-calm" ng-click="hideQuery();">
+							取消
+						</button>
+					</div>
+					<div class="col col-50">
+						<button class="button button-block button-calm" ng-click="query();">
+							确定
+						</button>
+					</div>
+				</div>
+		</div>-->
+		<div id="hg1"  ng-show="commoditySellList.length >= 1">
+			<div class="row main-boder-bottom stable-bg " style="height:44px;padding:0px 10px;" >
+				<div class="col-50 text-left col-center">商品名称</div>
+				<div class="col-50 text-right col-center" >销售数量</div>
+			</div>
+
+			<ion-scroll id="hg2" calc-height delegate-handle="spMainScroll">
+
+			<ion-list >
+				<ion-item ng-repeat="item in commoditySellList" ng-click="toSpxsDetail(item);" style="padding:0px;">
+					<ul class="row light-bg " style="height:70px;padding:0px 10px;">
+						<li class="col-80 text-left col-center">
+							<p style="font-size: 18px">{{item.productName}}</p>
+							<p style="color:#999999">{{item.productType}}</p>
+						</li>
+
+						<li class="col-20 text-center col-center no-padding" style="width:60px;position:absolute;right:10px;top:12px;">
+							<p style="font-size: 18px">{{item.sellNum}}</p>
+							<button class="button-clear" style="border:1px solid #007fdb;color:#007fdb;border-radius:3px;font-size:12px;padding:0 5px;">明细</button>
+						</li>
+					</ul>
+
+				 	<!--  <div class="row main-boder-bottom text-center" style="line-height: 32px;font-size: 16px">
+							<h5 class="col col-33 no-padding">商品名称</h5>
+							<h5 class="col col-33 no-padding">商品分类</h5>
+							<h5 class="col col-33 no-padding">商品数量</h5>
+					</div>
+					<ion-item ng-repeat="item in commoditySellList|orderBy:data.sortType:true" ng-click="toSpxsDetail(item);" style="padding:0px;">
+						<li class="row text-center" style="line-height: 34px">
+
+							<div class="col col-33 p-blue" >{{item.wpCommodityInfoEntity.name}}</div>
+							<div class="col col-33" ></div>
+							<div class="col col-25">{{item.wpSellDetailEntity.sellNum}}</div>
+							<i class="col icon ion-ios-arrow-right col-center text-right" style="padding-right:10px;font-size:22px;"></i>
+
+						</li>-->
+				</ion-item>
+			</ion-list>
+			</ion-scroll>
+		</div>
+		<div class="row" ng-show="commoditySellList.length<1">
+			<div class="col col-100">
+				<center class="assertive">
+					暂无数据
+				</center>
+			</div>
+		</div>
+
+    <!-- <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher> -->
+
+</ion-content>
+
+</ion-view>

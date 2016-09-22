@@ -1,0 +1,36 @@
+<script id="sellInfo.html" type="text/ng-template">
+	<ion-modal-view>
+	<div class="bar bar-header bar-positive">
+	<div class="button-bar">
+	<div class="buttons right-buttons">
+	<h1 class="title">销售单据</h1>
+	<button class="button  button-calm" ng-click="closeSellInfoModal()">
+	关闭
+	</button>
+	</div>
+	</div>
+	</div>
+	<ion-content>
+	<h2>日期：{{item.sellTime| date:'yyyy-MM-dd'}}</h2>
+	<p>
+	状态：{{item.status}}
+	</p>
+	<p>
+	总额：{{item.sellAmount}}
+	</p>
+	<p>
+	数量：{{item.workName}}
+	</p>
+	<p>
+	现金支付:{{item.sellAmount| number:2}}
+	</p>
+	<p>储值卡支付:{{item.preCashAmount| number:2}}</p>
+	<p>微信支付:{{item.unionpayAmount| number:2}}</p>
+	<p>支付宝支付:{{item.alipayAmount| number:2}}
+	</p>
+	<p>银联卡支付:{{item.unionpayAmount| number:2}}
+	</p>
+	</div>
+	</ion-content>
+	</ion-modal-view>
+</script>

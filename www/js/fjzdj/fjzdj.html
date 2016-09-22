@@ -1,0 +1,87 @@
+<ion-view view-title="反结账单据" name="fjzdj-view" ng-controller="FjzdjCtrl">
+ 	<ion-nav-bar class="bg-color light" align-title="center">
+       <ion-nav-buttons side="left">
+         <button class="button icon ion-ios-arrow-left button-clear"style="color: #FFFFFF" ng-click="goBack();"></button>
+       </ion-nav-buttons>
+       <ion-nav-buttons side="right">
+           <!-- <button class="button button-clear" ng-click="showQuery()"><img ng-src="icon/funnel.png" style="width: 22px;height: auto;margin-top: 5px;"></button> -->
+      	  <button class="button button-clear" ng-click="showQuery()" style="color:#ffffff;font-size:14px">筛选</button>
+       </ion-nav-buttons>
+     </ion-nav-bar>
+	
+	<!-- <div class="scroll-content has-header"> -->
+		<!--<div class="row stable-bg" id ="queryDiv" style="height:320px;padding:0px;display: none;position:absolute;top: 0;left: 0;z-index: 999999;background:#EAEAEA;">-->
+			<!--<ul class="list">-->
+				<!--<label class="item item-input item-select">-->
+					<!--<div class="input-label">-->
+						<!--开始时间-->
+					<!--</div>-->
+					<!--<input type="text" value=""  onclick="WdatePicker()" ng-model="data.startTime" id="startTime" style="height:25px;padding: 0px;" readonly="true">-->
+				<!--</label>-->
+				<!--<label class="item item-input item-select">-->
+					<!--<div class="input-label">-->
+						<!--结束时间-->
+					<!--</div>-->
+					<!--<input type="text" value=""  onclick="WdatePicker()" ng-model="data.endTime" id="endTime" style="height:25px;padding: 0px;" readonly="true">-->
+				<!--</label>-->
+				<!--<label class="item item-input item-select">-->
+					<!--<div class="input-label">-->
+						<!--收银员-->
+					<!--</div>-->
+					<!--<select ng-model="data.employeeId">-->
+						<!--<option>全部</option>-->
+						<!--<option ng-repeat="item in employeeList" value="{{item.id}}">{{item.workName}}</option>-->
+					<!--</select> </label>-->
+				<!--<label class="item item-input item-select">-->
+					<!--<div class="input-label">-->
+						<!--商品分类-->
+					<!--</div>-->
+					<!--<select ng-model="data.commodityTypeId">-->
+						<!--<option>全部</option>-->
+						<!--<option ng-repeat="item in commodityTypeList" value="{{item[0]}}">{{item[1]}}</option>-->
+					<!--</select> </label>-->
+				<!--<label class="item item-input item-select">-->
+					<!--<div class="input-label">-->
+						<!--供应商-->
+					<!--</div>-->
+					<!--<select ng-model="data.supplierId">-->
+						<!--<option>全部</option>-->
+						<!--<option ng-repeat="item in supplierInfoList" value="{{item.id}}">{{item.name}}</option>-->
+					<!--</select> </label>-->
+				<!--<div class="row no-padding">-->
+					<!--<div class="col col-50">-->
+						<!--<button class="button button-block button-calm" ng-click="hideQuery();">-->
+							<!--取消-->
+						<!--</button>-->
+					<!--</div>-->
+					<!--<div class="col col-50">-->
+						<!--<button class="button button-block button-calm" ng-click="query();">-->
+							<!--确定-->
+						<!--</button>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+		
+		<ion-content class="has-header" delegate-handle="fjzMainScroll">
+			<ul class="list">
+				<li class="item item-icon-right" ng-repeat="item in reverseList"  ng-click="toDetail(item)" >
+					<h2 style="color: red;font-size: 18px">日期：{{item.sellTime| date:'yyyy-MM-dd'}}</h2>
+			          <p style="color: black;font-size: 14px">收银员：{{item.sellerEmployee.workName}}</p>
+			          <p style="color: black;font-size: 14px">销售类型：{{item.sellTypeName}}</p>
+			          <p style="color: black;font-size: 14px">数量：{{item.commodityNum}}</p>
+					<i class="icon ion-ios-arrow-right"></i>
+				</li>
+			</ul>
+			<div class="row" ng-show="reverseList.length<1">
+				<div class="col col-100">
+					<center class="assertive">
+						暂无数据
+					</center>
+				</div>
+			</div>
+			<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+		</ion-content>
+	
+
+</ion-view>

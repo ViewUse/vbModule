@@ -1,0 +1,130 @@
+<ion-view view-title="首页"  ng-controller="MainCtrl">
+
+	<ion-nav-bar class="bg-color white" align-title="center">
+       <ion-nav-buttons side="left">
+         <button class="button button-icon button-clear ion-navicon" style="color: #FFFFFF" menu-toggle="left"></button>
+       </ion-nav-buttons>
+       <ion-nav-buttons side="right">
+       	 <button class="button ion-funnel icon icon-left button-balanced" ng-bind="curQueryShop.name" style="font-size:15px;" ng-if="false" ng-click="dealFilter();"></button><!-- isHasSubShop -->
+       </ion-nav-buttons>
+     </ion-nav-bar>
+
+	<ion-content>
+		<!-- <div id="all"> -->
+		<div class="row no-padding paddinglr" style="height:32px;">
+			<h4 style="width:60%;font-size:10px;color:#666666;">最近登录：{{time}}</h4>
+			<h4 class="text-right" style="width:40%;font-size:10px;color:#666666;">{{day}}</h4>
+		</div>
+		<div style="background-color:#f2f2f2;height:10px;"></div>
+
+		<div  class="row main-boder-bottom no-padding" ng-click="toFace('yyhz')" style="height:48px;">
+			<!-- toYyhz() -->
+			<b class="col-90 col-center" style="font-size: 20px;padding-left:10px" >营业汇总</b>
+      		<i class="col col-10 icon ion-ios-arrow-right col-center text-right" style="color:#999999;font-size:22px;padding-right:10px"></i>
+		</div>
+
+		<div  class="row main-boder-bottom no-padding" style="margin-top:0px;height:42px;">
+	     <!--<a class="col col-10 button icon-left ion-chevron-left button-clear button-positive" ng-click="preDay()"></a>-->
+		  <a id="left-bt" class="col col-10 icon ion-ios-arrow-left col-center" style="color:#999999;font-size:22px;padding-left:10px" ng-click="preDay()"></a>
+
+	      <i class="col-80 jz-center " style="font-size: 16px;color: #333333;" >
+	     	 <img ng-src="icon/rl.svg" class="img26 jz-center">
+	        	&nbsp;今天收益&nbsp;
+	        <input style="width:90px"  type="text" ng-model="currentDate"  id ="currentDate" onclick="WdatePicker({onpicked:function(){queryMain()},maxDate:'%y-%M-%d', isShowClear:false})">
+          </i>
+
+          <a id="right-bt" class="col col-10 icon ion-ios-arrow-right col-center text-right" style="color:#999999;font-size:22px;padding-right:10px" ng-click="nextDay()"></a>
+      	  <!-- <a class="col col-10 button icon-left ion-chevron-right button-clear button-positive" ng-click="nextDay()"></a>-->
+		</div>
+		
+	  <div id="mh" main-height>	
+	   <div  class="text-color" style="margin-top:0px;height:43%;">
+
+		    <div class="row no-padding main-boder-bottom" style="text-align:center;height:50%;">
+		    	<div class="col col-33 col-center">
+		    		<p class="p-green margin-b" ng-bind="total|number:2"></p>
+		    		<span>销售总额</span>
+		    	</div>
+		    	<i class="main-boder-right"></i>
+		    	<div class="col col-33 col-center">
+		    		<p id="maoli" class="p-blue margin-b" ng-bind="maoli|number:2"></p>
+		    		<span>销售毛利</span>
+		    	</div>
+		    	<i class="main-boder-right"></i>
+		    	<div class="col col-33 col-center">
+		    		<p id="bishuo" class="p-red margin-b" ng-bind="sellNum"></p>
+		    		<span class="margin-b">销售笔数</span>
+		    	</div>
+		    </div>
+
+		    <div class="row no-padding main-boder-bottom" style="text-align:center;margin-top:0px;height:50%;">
+		    	<div class="col col-33 col-center">
+		    		<p class="p-green margin-b" ng-bind="counterSeting|number:2"></p>
+		    		<span>反结账(元)</span>
+		    	</div>
+		    	<i class="main-boder-right"></i>
+		    	<div class="col col-33 col-center">
+		    		<p class="p-blue margin-b" ng-bind="discountAmount|number:2" ></p>
+		    		<span>折扣(元)</span>
+		    	</div>
+		    	<i class="main-boder-right"></i>
+		    	<div class="col col-33 col-center" >
+		    		<p class="p-red margin-b" ng-bind="cancelAmount|number:2"></p>
+		    		<span>退款(元)</span>
+		    	</div>
+		    </div>
+
+	    </div>
+
+	     <div style="background-color:#f2f2f2;height:10px;"></div>
+
+		<div  class="light-bg" style="height:57%;">
+
+			<div  class="row" style="height:50%;">
+				<div class="col col-33 jz-center" ng-click="toFace('rjbb')">
+					<!-- toRjbb() -->
+					<img ng-src="icon/rj.svg" class="img50"/>
+					<br/>
+					日结报表
+			 	</div>
+			  	<div class="col col-33 jz-center" ng-click="toFace('xsdj')">
+			  		<!-- toXsdj() -->
+					<img ng-src="icon/xs.svg" class="img50"/>
+					<br/>
+					销售单据
+				</div>
+				<div class="col col-33 jz-center" ng-click="toFace('spxs')">
+					<!-- toSpxs() -->
+					<img ng-src="icon/sp.svg" class="img50"/>
+					<br/>
+					商品销售
+				</div>
+			</div>
+
+			<div  class="row" style="height:50%;">
+				<div class="col col-33 jz-center"  ng-click="toFace('qsfx')">
+					<!-- toQsfx() -->
+					<img ng-src="icon/qs.svg" class="img50"/>
+					<br/>
+					趋势分析
+				</div>
+				<div class="col col-33 jz-center"  ng-click="toFace('fjzdj')">
+					<!-- toFjzdj() -->
+					<img ng-src="icon/fj.svg" class="img50"/>
+					<br/>
+						反结账单据
+				</div>
+				<div class="col col-33 jz-center"  ng-click="toFace('handover')">
+					<!-- toHandover() -->
+					<img ng-src="icon/jj.svg" class="img50"/>
+					<br/>
+					交接班记录
+				</div>
+			</div>
+		</div>
+
+		</div>
+		<!-- </div> -->
+		<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+	</ion-content>
+</ion-view>
